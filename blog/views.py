@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, \
     PageNotAnInteger
-from .models import Post
+from .models import Post, Comment
 
 def post_list(request):
     object_list = Post.published.all()
@@ -26,7 +26,8 @@ def post_list(request):
 from django.views.generic import ListView
 
 class PostListView(ListView):
-    # помимо обычной функции мы можем использовать класс ListView который предоставит нам такой же функционал
+    # помимо обычной функции мы можем использовать класс ListView который предоставит нам такой же функционл
+    # с пагинацией
     queryset = Post.published.all()
     context_object_name = 'posts'
     paginate_by = 3
@@ -38,13 +39,32 @@ def post_detail(request, year, month, day, post):
                              publish__year = year,
                              publish__month = month,
                              publish__day = day)
+    # List of active comments for this post
+    comments = post.comments.filter(active = True)
+    new_comment = None
+    if request.method == 'POST':
+        # A comment was posted, получить информациб из запроса
+        comment_form = CommentForm(data = request.POST)
+        if comment_form.is_valid():
+            # Копирование без сохранения
+            new_comment = comment_form.save(commit = False)
+            # Меняем так свои параметры
+            new_comment.post = post
+            # Сохранение в database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
     # 404 или обьект с полями
     return render(request,
                   'blog/post/detail.html',
-                  {'post': post})
-    # теперь у detail есть поле post
+                  {'post': post,
+                   'comments': comments,
+                   'new_comment': new_comment,
+                   'comment_form': comment_form})
+    # теперь у detail есть поле post, из которого можно брать информацию
 
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
 
 from django.core.mail import send_mail
 
