@@ -1,0 +1,57 @@
+Часть 1 30-06 ( страница 1)
+
+В джанго в первую очередь надо создать свой проект, командой python manage.py startapp name_of_app
+прописать name_of_app в mysite.settings.INSTALLED_APPS
+Дальше следует создать базу данных командами <manage.py migragte> для первого запуска.
+Дале в models.py следует прописать существующую базу данных для проекта.
+После прописывания обьектов, командами  <makemigrations name_of_the_app> создаём базу данных и снова
+<manage.py migragte> для сохранения данных. При этом в migrations будет создан initial.py который кратко описывает вашу модель
+
+По постфиксу /admin будет сайт admin. Чтобы на него зайти, необходимо зарегестрироваться ( создав superuser )
+Теперь в панельки admin мы можем менять то, как выглядит наша страничка  адмнинистрирования.
+
+Помимо этого мы можем работать через <python manage.py shell> для доавления или удаления или проверки обьектов в датабазе,
+пример комманд:
+    from django.contrib.auth.models import User
+    from blog.models import Post
+    post = Post(title = ' lol ' , slug = 'another' , body= 'bodyy', author =User.objects.get(username = 'admin' )) # создали
+    post.save() # созранили
+    # или сделали
+    Post.objects.create(title='One more post', slug='one-more-post', body='Post body.', author=User.objects.get(username = 'admin' ))  # 2 в 1
+    Post.objects.all() # можно посмотреть все обьекты
+    Post.objects.filter(publish__year=2020) # отфильтровать
+    Post.objects.filter(publish__year=2020).exclude(title__startswith='Why')  # отфильтровать с искдлючением
+    Post.objects.order_by('title') # отсортировать '-title' в обратном порядке
+    post = Post.objects.get(id=1)
+    post.delete()  # удалить
+
+Вся работа с моделью идёт отдельно работы с view. Всё что отображается на сайте находится в view.
+Теперь, создав view, заполним его методами. В view мы можем докинуть пару полей на страницу, чтобы потом их там забрать,
+помимо этого в urls добавляем наши ссылки. Папка Static видна и в неё можно класть постоянные штуки через {%load static}.
+И потом обращаться через {% static 'css/blog.css' %}
+
+В одном файле будет {% block some_name %}My Blog1{% endblock %} и так же пометка, что этот файл Расширяет
+{% extends "blog/base.html" %} другой файл. И если в другом фалйе юудет те же {% block some_name %}{% endblock %},
+то они внутри будут заменены на надпись из первого файла.
+{% block title %}{{ post.title }}{% endblock %} вот такая запись в расширяющем другие файле будет означать
+Вставить Значение post.tile, который мы передали ещё в view.py
+
+Если информации слишком много, тогда следует добавить Пагинацию. Она добавляется следующим образом ->
+Передаём в .GET. 'page': page - номер страницы и принимаем его в views.py . Потом добавляем
+ {% include "my_pagination.html" with page=posts %}, заменяя page на posts.
+
+ Если мы не любим функции, то можно наследоваться от класса ListView и в итоге всё будет +- так же.
+
+https://www.youtube.com/watch?v=WTXPLwrK398&list=PLF-NY6ldwAWrb6nQcPL21XX_-AmivFAYq&index=7
+
+Часть 2 03-07 ( страница 40 )
+
+Отправка форм -> подключаем библиотеку и работаем теперь с ней в фалйе views прописано как мы проверяем полученный
+запрос.
+
+Отправка почты происходит через smtp сервер с либой джанго (точно такой же как и питон).
+
+Чтобы перейти на страницу с отправкой <a href="{% url 'blog:post_share' post.id %}">  (  {% url %} template
+tag provided by Django ) вызываем функцию, она создаёт нам пустую форму и кладёт на страницу share.html .
+Там эта форма отправляется post запросом на ту же страницу. Так же используется CSFR токен для обезопашивания.
+
