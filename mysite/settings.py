@@ -15,6 +15,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182']
 
+SITE_ID = 1
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
