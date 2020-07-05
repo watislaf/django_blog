@@ -13,7 +13,9 @@ SECRET_KEY = 'e9xai@w5gmi*(je)@^dbl=b1#qkcf$!v_+(b1j$@jjbdqfdpd%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182','gigglingpenguin.me']
+
+SITE_ID = 1
 
 # Application definition
 INSTALLED_APPS = [
@@ -24,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +104,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # префикс для url
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать
 
 # my personal
 EMAIL_HOST = 'smtp.mail.ru'
