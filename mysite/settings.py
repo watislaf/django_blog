@@ -115,6 +115,7 @@ EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
 # The EMAIL_BACKEND setting indicates the class to use to send emails
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 STATIC_URL = '/static/' # префикс для url
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать
