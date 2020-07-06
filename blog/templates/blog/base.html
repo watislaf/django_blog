@@ -15,15 +15,23 @@
 </div>
 
 <div id="sidebar">
-	<h2>My blog</h2>
+	<h2><a href ="{% url 'blog:post_list' %}">All Blogs</a></h2>
 	<p>This is my blog.</p>
 	{% block side %}
 	{% endblock %}
 	
 	<h3>Latest posts</h3>
 	{% show_latest_posts 3 %}
-l
+	
+	<div class="go_to_dash">
+		{% if request.user.is_authenticated %}
+		Hello {{ request.user.first_name }},
+		<a href="{% url 'account:logout' %}">Logout</a> or go to
+		<a href="{% url 'account:dashboard' %}">DashBoard</a>
+		{% else %}
+		<a href="{% url 'account:login2' %}">Log-in</a>
+		{% endif %}
+	</div>
 </div>
-
 </body>
 </html>

@@ -1,27 +1,29 @@
 {% extends "blog/base.html" %}
 {% load blog_tags %}
 
-{% block title %}My Blog1{% endblock %}
+{% block title %}MyBlog{% endblock %}
 {% block content %}
-<h1>My Blog2</h1>
+<h1>I am Blog</h1>
 {% for post in posts %}
-<h2>
-	<a href="{{ post.get_absolute_url }}">
-		{{ post.title }}
-	</a>
-</h2>
-
-<p class="date">
-	Published {{ post.publish }} by {{ post.author }}
-</p>
-
-{{ post.body|markdown|truncatewords:30|linebreaks }}
-
+<div class="page_preview">
+	<h2>
+		<a href="{{ post.get_absolute_url }}">
+			{{ post.title }}
+		</a>
+	</h2>
+	
+	<p class="date">
+		Published {{ post.publish }} by {{ post.author }}
+	</p>
+	
+	{{ post.body|markdown|truncatewords:30|linebreaks }}
+</div>
 {% endfor %}
 
 {% include "my_pagination.html"  with page=page_obj  %}
 {% endblock %}
 
 {% block side %}
-<p> You have written {% total_posts posts%} posts so far.</p>
+<p> You have written {% total_posts request%} posts so far.</p>
+<p> And about {% total_comments request%} comments ... Good.</p>
 {% endblock %}

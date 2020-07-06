@@ -3,9 +3,8 @@ from .models import Post, Comment
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'post', 'created', 'active')
-    list_filter = ('active', 'created', 'updated')
-    search_fields = ('name', 'email', 'body')
+    list_display = ('author', 'created',)
+    list_filter = ('created',)
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

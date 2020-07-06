@@ -1,5 +1,9 @@
 
 Подключение на сервер:
+Разворачиваем venv
+python3 -m venv venv
+. venv/bin/activate
+
 Закидываем проект. Меняем debug = false. Добавляем айпишник в allowed host. Теперь запуск можно сделать через
 runserver 0.0.0.0:8000 -> текущий айпишник в глобаке. Но сервер от джанго достаточно межденный, поэтому настроим
 ngix -> более быстрый сервер и он будет общаться с джанго через wsgi. (pip install gunicorn ( библа для соединения через
@@ -79,7 +83,7 @@ server {
 Теперь добавим домен. На сайте домена укажем Record A переодресацию на наш айпи
 server name = gigglingpenguin.me
 и в allowed host gigglingpenguin.me
-перезагружаем всё что видем ngix и gunicorn
+перезагружаем всё что видем ngix и gunicorn ( sudo systemctl stop/start gunicorn, sudo nginx -s reload)
 И теперь по нашему домену доступен наш сайт.
 
 Далее настроим https. Чтобы это сделать, нам нужен ssl сертификат, который закрепит за нашим доменом наш ip.

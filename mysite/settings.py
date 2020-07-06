@@ -17,18 +17,20 @@ ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182','gigglingpenguin.me']
 
 SITE_ID = 1
 
-# Application definition
+
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
     'django.contrib.sites',
     'django.contrib.sitemaps',
 ]
+# Application definition
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -104,8 +106,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/' # префикс для url
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать
 
 # my personal
 EMAIL_HOST = 'smtp.mail.ru'
@@ -113,3 +113,13 @@ EMAIL_HOST_USER = 'vladkozulin@mail.ru'
 EMAIL_HOST_PASSWORD = 'googler'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
+# The EMAIL_BACKEND setting indicates the class to use to send emails
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+STATIC_URL = '/static/' # префикс для url
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать
+
+LOGIN_REDIRECT_URL = 'account:dashboard'
+LOGIN_URL = 'account:login2'
+LOGOUT_URL = 'account:logout'
+

@@ -3,7 +3,10 @@ from django.core.paginator import Paginator, EmptyPage, \
     PageNotAnInteger
 from .models import Post, Comment
 
+from django.contrib.auth.decorators import login_required
+
 def post_list(request):
+    print('OKOKOOKKOKO')
     object_list = Post.published.all()
     # забрать все опубликованные обьекты
 
@@ -40,16 +43,20 @@ def post_detail(request, year, month, day, post):
                              publish__month = month,
                              publish__day = day)
     # List of active comments for this post
-    comments = post.comments.filter(active = True)
+    comments = post.comments
     new_comment = None
     if request.method == 'POST':
         # A comment was posted, получить информациб из запроса
         comment_form = CommentForm(data = request.POST)
-        if comment_form.is_valid():
+        if comment_form.is_valid() and \
+                comments.filter(author = request.user).count() == 0 or not \
+                comment_form.data['body'] == comments.filter(author = request.user).last().body:
             # Копирование без сохранения
             new_comment = comment_form.save(commit = False)
             # Меняем так свои параметры
+
             new_comment.post = post
+            new_comment.author = request.user
             # Сохранение в database
             new_comment.save()
     else:
