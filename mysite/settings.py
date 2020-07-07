@@ -15,7 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182','gigglingpenguin.me']
 
-SITE_ID = 1
+SITE_ID = 3
 
 
 INSTALLED_APPS = [
@@ -114,8 +114,9 @@ EMAIL_HOST_PASSWORD = 'googler'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
 # The EMAIL_BACKEND setting indicates the class to use to send emails
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'vladkozulin@mail.ru'
+SERVER_EMAIL = 'smtp.mail.ru'
 
 STATIC_URL = '/static/' # префикс для url
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/') # папка, в которой будет лежать
@@ -124,3 +125,5 @@ LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGIN_URL = 'account:login2'
 LOGOUT_URL = 'account:logout'
 
+# создаём своего польщователя
+AUTH_USER_MODEL = 'auth.User'
