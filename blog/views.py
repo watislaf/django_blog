@@ -101,7 +101,3 @@ def post_share(request, post_id):
     return render(request, 'blog/post/share.html', {'post': post,
                                                     'form': form,
                                                     'sent': sent})
-
-# from django.core.mail import send_mail
-# send_mail('Django mail', 'This e-mail was sent with Django.', 'vladkozulin@mail.ru',
-#          ['vladkozulin@mail.ru'], fail_silently=False)

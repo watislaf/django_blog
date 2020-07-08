@@ -353,3 +353,77 @@ img.user-detail {
     font-style: italic;
     color: #ccc;
 }
+
+.edit form {
+    float: left;
+}
+
+.ava {
+    float: right;
+}
+
+.ava img {
+    height: 15em;
+}
+
+figure {
+    width: 15em;
+    height: 15em;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+figure:hover + span {
+    bottom: -36px;
+    opacity: 1;
+}
+
+/* Flashing */
+.hover13 figure:hover img {
+    opacity: 1;
+    -webkit-animation: flash 1.5s;
+    animation: flash 1.5s;
+}
+
+@-webkit-keyframes flash {
+    0% {
+        opacity: .4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: .4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.file_choose {
+    padding: 5px 10px;
+    background: #00ad2d;
+    border: 1px solid #00ad2d;
+    color: #fff;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.hide_file {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+}

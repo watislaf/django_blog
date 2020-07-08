@@ -10,3 +10,6 @@ def get_user_perm(context, request):
     # print(User.objects.get(email = request.POST['email']).blog_posts.count() != 0)
     print(request)
     return
+
+from django.forms import URLField
+from django.core.exceptions import ValidationError

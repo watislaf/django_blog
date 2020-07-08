@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name = 'login2'),
     path('logout/', auth_views.LogoutView.as_view(), name = 'logout'),
     path('', views.dashboard, name = 'dashboard'),
+    path('edit/', views.edit, name = 'edit'),
     # register url
     path('register/', views.register, name = 'register'),
 

@@ -4,7 +4,9 @@
 <h1>Dashboard</h1>
 <p>SO, YOU CAN:</p>
 <ul>
-	<a href="{% url 'account:password_change' %}"> Change Password</a>
-
+	<li><a href="{% url 'account:edit' %}">Edit your profile</a></li>
+	<li><a href="{% url 'account:password_change' %}"> Change Password</a></li>
 </ul>
 {% endblock %}
+
+
