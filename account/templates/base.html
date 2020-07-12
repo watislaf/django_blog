@@ -4,9 +4,13 @@
 	<title>{% block title %}{% endblock %}</title>
 	<link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
-<body>
-<div id="header">
 
+
+<body>
+
+
+
+<div id="header">
 	<span class="logo"><a href ="{% url 'blog:post_list' %}" >MyBlog</a></span>
 	{% if request.user.is_authenticated %}
 	<ul class="menu">
@@ -37,6 +41,17 @@
 </div>
 
 <div id="content">
+	
+	{% if messages %}
+ 	<ul class="messages">
+ 		{% for message in messages %}
+ 		<li class="{{ message.tags }}">
+ 		{{ message|safe }}
+ 		</li>
+ 	{% endfor %}
+	 </ul>
+	{% endif %}
+	
 	{% block content %}
 	{% endblock %}
 </div>

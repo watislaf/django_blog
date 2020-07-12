@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def edit(request):
@@ -17,12 +18,15 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+        else:
+            messages.error(request, 'unvalid form')
         if request.FILES.get('ava'):
             if request.user.profile.photo.name != '/users/no_photo.png':
                 print(request.user.profile.photo.name)
                 request.user.profile.photo.delete()
 
             request.user.profile.photo.save('.png', request.FILES.get('ava'))
+            messages.success(request, 'Profile updated successfully')
             # request.user.profile.photo
     else:
         user_form = UserEditForm(instance = request.user)
@@ -35,6 +39,7 @@ def edit(request):
 
 def register(request):
     if request.method == 'POST':
+        messages.success(request, 'Profile registered successfully')
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             # Create a new user object but avoid saving it yet
@@ -44,8 +49,8 @@ def register(request):
                 user_form.cleaned_data['password'])  # make hashing
             # Save the User object
             # Create the user profile
-            Profile.objects.create(user = new_user)
             new_user.save()
+            Profile.objects.create(user = new_user)
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})

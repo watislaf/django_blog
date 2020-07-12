@@ -61,16 +61,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -130,3 +120,23 @@ AUTH_USER_MODEL = 'auth.User'
 # Добавляем картиночки
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# для секретиков
+import environ
+
+env = environ.Env()
+environ.Env.read_env()  # импортируем
+
+# Database. Если дебаг, то на сервере, тогда и бд другая
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': env.db(),  # описываем, где искать настройки доступа к базе
+    }
