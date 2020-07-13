@@ -65,7 +65,8 @@ class Comment(models.Model):
                              on_delete = models.CASCADE,
                              related_name = 'comments')
     # related_name используется для обращения от post к его комментариям
-    author = models.ForeignKey(User, on_delete = models.CASCADE,
+    author = models.ForeignKey(User,
+                               on_delete = models.CASCADE,
                                related_name = 'comments')
     body = models.TextField()
     created = models.DateTimeField(auto_now_add = True)
@@ -74,4 +75,4 @@ class Comment(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return f'Comment by {self.name} on {self.post}'
+        return f'Comment by {self.author.username} on {self.post}'

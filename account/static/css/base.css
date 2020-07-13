@@ -420,6 +420,10 @@ figure:hover + span {
     height: 20px;
 }
 
+.avatar-3 {
+    width: 40px;
+}
+
 .hide_file {
     position: absolute;
     z-index: 1000;

@@ -6,7 +6,6 @@ from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 
 def post_list(request):
-    print('OKOKOOKKOKO')
     object_list = Post.published.all()
     # забрать все опубликованные обьекты
 

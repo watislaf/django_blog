@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Log-in{% endblock %}
 {% block content %}
+{% load trans from i18n %}
 <h1>Log-in</h1>
 {% if form.errors %}
 <p>
@@ -17,7 +18,7 @@
 			Facebook</a>
 		</li>
 		<li class="vk">
-			<a href="social-auth/login/vk-oauth2">
+			<a href="/social-auth/login/vk-oauth2">
 				<img src="/media/lvk.png" class="avatar-3" data-toggle="tooltip"
 					 title="{% trans 'Login via VKontakte' %}"></a>
 		</li>
