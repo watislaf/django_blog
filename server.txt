@@ -90,3 +90,16 @@ server name = gigglingpenguin.me
 Сайт https://letsencrypt.org/getting-started/ предоставляет бесплатные ssl ертифекаты при помощи
 certbot https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx -> там же у нас фулл установка
 sudo certbot --nginx и ответы  (a, n, /enter, 2)
+
+
+_______________-
+ssl сертифекат версия 2 для дебага
+pip install django-extensions   #  RunServerPlus extension - запуск ssl
+pip install werkzeug  # debugger
+
+ Так же можно добавить свой локальный домен в папке C:\Windows\System32\drivers\etc\hosts
+
+Добавим в app и запустим
+python manage.py runserver_plus --cert-file cert.crt
+
+Теперь у нас https ! только не работающий .... но для дебага пойдёт. Для продакшена другой нужен будет

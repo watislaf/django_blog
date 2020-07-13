@@ -13,11 +13,13 @@ SECRET_KEY = 'e9xai@w5gmi*(je)@^dbl=b1#qkcf$!v_+(b1j$@jjbdqfdpd%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me']
+ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.com"]
 
 SITE_ID = 3
 
 INSTALLED_APPS = [
+    'social_django',
+    'django_extensions',
     'account.apps.AccountConfig',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
@@ -146,7 +148,12 @@ else:
 
 #
 AUTHENTICATION_BACKENDS = [
+'social_core.backends.facebook.FacebookOAuth2',
     'account.authentication.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+# для фейсбука
+SOCIAL_AUTH_FACEBOOK_KEY = '1484853328367791' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f4efa2c71bb990a3086b9c54ef524e7b' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE =  ['email'] # то, что мы получаем от пользователя

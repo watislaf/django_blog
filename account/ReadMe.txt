@@ -30,4 +30,16 @@ mail.ru, yandex сказал, что я бот. Вообще везде реко
     Взял, messages.success(request, 'Profile updated '\
  'successfully') добавил в view. И обработал. Пример обработки в base.html
 
-    Кастомная аутефекация 128 13.07
+    Социальные сети 130 13.07 https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supported-backends
+pip install social-auth-app-django
+Apps += 'social_django', и потом python manage.py migrate чтобы синхранизировать
+
+Добавим FaceBook Google Twitter.
+'social_core.backends.facebook.FacebookOAuth2', в раздел AUTHENTICATION_BACKENDS
+Заходим на сайт, создаём приложение. ПОлучаем ключи и секреты, записываем в настройки, добавляем домен сайта.
+
+В настройках продукта ставим настройки
+• Client OAuth Login да
+• Web OAuth Login да
+• Enforce HTTPS да
+• Embedded Browser OAuth Login да

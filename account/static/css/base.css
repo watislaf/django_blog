@@ -416,6 +416,10 @@ figure:hover + span {
     position: relative;
 }
 
+.facebook {
+    height: 20px;
+}
+
 .hide_file {
     position: absolute;
     z-index: 1000;
