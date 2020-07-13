@@ -5,6 +5,7 @@ from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditFor
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 @login_required
 def edit(request):
@@ -39,21 +40,23 @@ def edit(request):
 
 def register(request):
     if request.method == 'POST':
-        messages.success(request, 'Profile registered successfully')
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             # Create a new user object but avoid saving it yet
-            new_user = user_form.save(commit = False)
-            # Set the chosen password
-            new_user.set_password(
-                user_form.cleaned_data['password'])  # make hashing
-            # Save the User object
-            # Create the user profile
-            new_user.save()
-            Profile.objects.create(user = new_user)
-            return render(request,
-                          'account/register_done.html',
-                          {'new_user': new_user})
+            if User.objects.all().filter(email = user_form['email'].value()).count() != 0:
+                messages.error(request, 'sorry email is already used')
+            else:
+                new_user = user_form.save(commit = False)
+                # Set the chosen password
+                new_user.set_password(
+                    user_form.cleaned_data['password'])  # make hashing
+                # Save the User object
+                # Create the user profile
+                new_user.save()
+                Profile.objects.create(user = new_user)
+                return render(request,
+                              'account/register_done.html',
+                              {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request,

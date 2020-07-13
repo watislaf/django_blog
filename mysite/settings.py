@@ -69,6 +69,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
@@ -140,3 +143,10 @@ else:
     DATABASES = {
         'default': env.db(),  # описываем, где искать настройки доступа к базе
     }
+
+#
+AUTHENTICATION_BACKENDS = [
+    'account.authentication.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
