@@ -1,0 +1,6 @@
+Django
+Pillow
+Markdown
+social-auth-app-django
+django-extensions
+werkzeug

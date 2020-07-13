@@ -3,6 +3,8 @@ from django.core.paginator import Paginator, EmptyPage, \
     PageNotAnInteger
 from .models import Post, Comment
 
+from django.contrib.auth.decorators import login_required
+
 def post_list(request):
     object_list = Post.published.all()
     # забрать все опубликованные обьекты
@@ -40,16 +42,20 @@ def post_detail(request, year, month, day, post):
                              publish__month = month,
                              publish__day = day)
     # List of active comments for this post
-    comments = post.comments.filter(active = True)
+    comments = post.comments
     new_comment = None
     if request.method == 'POST':
         # A comment was posted, получить информациб из запроса
         comment_form = CommentForm(data = request.POST)
-        if comment_form.is_valid():
+        if comment_form.is_valid() and \
+                comments.filter(author = request.user).count() == 0 or not \
+                comment_form.data['body'] == comments.filter(author = request.user).last().body:
             # Копирование без сохранения
             new_comment = comment_form.save(commit = False)
             # Меняем так свои параметры
+
             new_comment.post = post
+            new_comment.author = request.user
             # Сохранение в database
             new_comment.save()
     else:
@@ -94,7 +100,3 @@ def post_share(request, post_id):
     return render(request, 'blog/post/share.html', {'post': post,
                                                     'form': form,
                                                     'sent': sent})
-
-# from django.core.mail import send_mail
-# send_mail('Django mail', 'This e-mail was sent with Django.', 'vladkozulin@mail.ru',
-#          ['vladkozulin@mail.ru'], fail_silently=False)

@@ -1,5 +1,9 @@
 
 Подключение на сервер:
+Разворачиваем venv
+python3 -m venv venv
+. venv/bin/activate
+
 Закидываем проект. Меняем debug = false. Добавляем айпишник в allowed host. Теперь запуск можно сделать через
 runserver 0.0.0.0:8000 -> текущий айпишник в глобаке. Но сервер от джанго достаточно межденный, поэтому настроим
 ngix -> более быстрый сервер и он будет общаться с джанго через wsgi. (pip install gunicorn ( библа для соединения через
@@ -79,10 +83,23 @@ server {
 Теперь добавим домен. На сайте домена укажем Record A переодресацию на наш айпи
 server name = gigglingpenguin.me
 и в allowed host gigglingpenguin.me
-перезагружаем всё что видем ngix и gunicorn
+перезагружаем всё что видем ngix и gunicorn ( sudo systemctl restart gunicorn; sudo nginx -s reload)
 И теперь по нашему домену доступен наш сайт.
 
 Далее настроим https. Чтобы это сделать, нам нужен ssl сертификат, который закрепит за нашим доменом наш ip.
 Сайт https://letsencrypt.org/getting-started/ предоставляет бесплатные ssl ертифекаты при помощи
 certbot https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx -> там же у нас фулл установка
 sudo certbot --nginx и ответы  (a, n, /enter, 2)
+
+
+_______________-
+ssl сертифекат версия 2 для дебага
+pip install django-extensions   #  RunServerPlus extension - запуск ssl
+pip install werkzeug  # debugger
+
+ Так же можно добавить свой локальный домен в папке C:\Windows\System32\drivers\etc\hosts
+
+Добавим в app и запустим
+python manage.py runserver_plus --cert-file cert.crt
+
+Теперь у нас https ! только не работающий .... но для дебага пойдёт. Для продакшена другой нужен будет

@@ -1,0 +1,66 @@
+ SQLlite хорошая бд, но она рабоатет не в многопоточном режиме. Для сайта нужна другая бдшка. Настроем PostgreSQL.
+
+    Для начала изменим локаль нашего сервера. Команда locale говорит о месте. LcType и LcLocate должны быть русскими,
+для работы с русской субд. Поставим их с помощью команды sudo dpkg-reconfigure locales.
+ Ищем  ru_RU.UTF8 и отметьте её, нажав пробел,  затем нажмите Tab, чтобы переместиться на Ок, затем нажмите Enter и потом
+ тоже ru_Ru. Sudo reboot и погнале дальше.
+
+    Установим  PostgreSQL.  sudo apt install postgresql postgresql-contrib -y . Теперь на компе сидит сервер базы данных,
+который будет постоянно запускаться, так как уже находится в качестве unit в deamon. Так же был создан аккаунт postgres
+, который имеет права к сервебру базы данных ,  именно тот логин мы указываем при запуске команд
+
+    sudo systemctl stop postgres # остановить
+    sudo systemctl start postgres # запустить
+    sudo systemctl restart postgres # перезапустить
+    sudo systemctl status postgres # узнать статус, текущее состояние
+
+    Проверка на то, что всё работает -> sudo -u postgres psql -c 'select now()'  функция вызова текущего времени.
+
+_-_--_-_-_-_-_- pSQL -_-_--_-_--_--_-
+
+    sudo -u postgres psql - запуск утилиты для работы с psql
+
+    Список команд :
+    \? # справка по командом консольного клиента psql
+    \h # справка по доступным командам SQL
+    \h <команда> # справка по конкретной команде
+    \l # список баз данных
+    \du # список пользователей
+    \dt # список таблиц
+    \q # выйти ( из \l тоже выйти через Q)
+     CREATE DATABASE yatube; -> создать базу с именем yatube
+_-_-_-__--_-__-__-__--_--_-__-__--_--_-------____-
+
+    Для работы с бд, в целях безопасности, создадим польщователя с ограниченными правами.
+    CREATE USER yatube_user WITH ENCRYPTED PASSWORD '#58fL*dS3'; # установите свой пароль
+    GRANT ALL PRIVILEGES ON DATABASE yatube TO yatube_user; # дать все права при работе с базой yatube
+
+    Теперь устанавливает в вирутлаьное окружение дравера для работы с postgres
+
+    pip install psycopg2-binary
+
+    pip install django-environ # ключии и сектретные данные
+
+    Внутрь settings ->
+    import environ
+    env = environ.Env()
+    environ.Env.read_env() # импортируем
+
+    ...
+
+    DATABASES = {
+    'default': env.db(), # описываем, где искать настройки доступа к базе
+    }
+
+    Создали файл .env в корне и добавили вот это
+    DATABASE_URL=psql://klockvud:paSsWorD@127.0.0.1:5432/yatube
+                         user        passwod                db_name
+
+Теперь в папке с базой, пропишем для копирвания бдшки sqlite3 db.sqlite3 .dump > dump.sql
+
+Резервную копию можно
+Эта команда создаст файл («дамп базы»)
+yatube_backup.dump
+ бэкапом данных из БД yatube. В файле будут сохранены все данные из базы и команды, выполнение которых создаст копию исходной БД.
+createdb yatube2 # создали пустую базу данных с именем yatube2
+psql -d yatube2 -f yatube_backup.dump # загрузили в неё данные из дампа
