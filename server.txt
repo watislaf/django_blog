@@ -83,7 +83,7 @@ server {
 Теперь добавим домен. На сайте домена укажем Record A переодресацию на наш айпи
 server name = gigglingpenguin.me
 и в allowed host gigglingpenguin.me
-перезагружаем всё что видем ngix и gunicorn ( sudo systemctl stop/start gunicorn, sudo nginx -s reload)
+перезагружаем всё что видем ngix и gunicorn ( sudo systemctl restart gunicorn; sudo nginx -s reload)
 И теперь по нашему домену доступен наш сайт.
 
 Далее настроим https. Чтобы это сделать, нам нужен ssl сертификат, который закрепит за нашим доменом наш ip.

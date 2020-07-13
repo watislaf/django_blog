@@ -56,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # Добавил эту строку
             ],
         },
     },
@@ -145,15 +146,19 @@ else:
     DATABASES = {
         'default': env.db(),  # описываем, где искать настройки доступа к базе
     }
-
+    SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 #
 AUTHENTICATION_BACKENDS = [
-'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.vk.VKOAuth2',  # бекенд авторизации через ВКонтакте
     'account.authentication.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
 # для фейсбука
-SOCIAL_AUTH_FACEBOOK_KEY = '1484853328367791' # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = 'f4efa2c71bb990a3086b9c54ef524e7b' # Facebook App Secret
-SOCIAL_AUTH_FACEBOOK_SCOPE =  ['email'] # то, что мы получаем от пользователя
+SOCIAL_AUTH_FACEBOOK_KEY = '1484853328367791'  # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f4efa2c71bb990a3086b9c54ef524e7b'  # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']  # то, что мы получаем от пользователя
+LOGIN_REDIRECT_URL = '/blog/'
+SOCIAL_AUTH_VK_OAUTH2_KEY = '7537831'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'ICSkYRtgiaA0cXNaLMXD'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']

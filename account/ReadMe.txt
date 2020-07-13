@@ -43,3 +43,5 @@ Apps += 'social_django', и потом python manage.py migrate чтобы си�
 • Web OAuth Login да
 • Enforce HTTPS да
 • Embedded Browser OAuth Login да
+
+Ну а дальше сосём бибу я не знаю что не так...

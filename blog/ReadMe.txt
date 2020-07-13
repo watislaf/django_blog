@@ -1,4 +1,4 @@
-# temp yandex server per october 2020  ssh -i yandex klockvud@84.201.135.182
+    # temp yandex server per october 2020  ssh -i yandex klockvud@84.201.135.182
 
 Часть 1 30-06 ( страница 1)
 
