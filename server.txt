@@ -103,3 +103,10 @@ pip install werkzeug  # debugger
 python manage.py runserver_plus --cert-file cert.crt
 
 Теперь у нас https ! только не работающий .... но для дебага пойдёт. Для продакшена другой нужен будет
+__
+Uptimerobot озволяет держать в курсе, когда сайт упадёт
+https://uptimerobot.com/
+регаемся, добавляем сайт. Всё он чекается
+
+Но если мы куртые, то можно добавить https://sentry.io/signup/, он нам будет возвращать ещё текст ошибки
+там подробная инфа как всё поставить. Треким на https://sentry.io/issues

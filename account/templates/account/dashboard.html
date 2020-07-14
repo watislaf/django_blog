@@ -7,6 +7,20 @@
 	<li><a href="{% url 'account:edit' %}">Edit your profile</a></li>
 	<li><a href="{% url 'account:password_change' %}"> Change Password</a></li>
 </ul>
-{% endblock %}
+
+<p>You have bookmarked
+	{{ request.user.images_created.count }} image{{ request.user.images_created.count|pluralize }}.</p>
+
+<p>Drag the following button to your bookmarks toolbar to bookmark
+	images from other websites → <a href="javascript:{% include 'bookmarklet_launcher.js' %}"
+									class="button">
+		Bookmark it</a>
+</p>
+ Or you can paste img via url→
+<form method="post">
+	{{ form.as_p }}
+	{% csrf_token %}
+	<p><input type="submit" value="Add photo via url"></p>
+</form>{% endblock %}
 
 

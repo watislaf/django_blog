@@ -4,3 +4,5 @@ Markdown
 social-auth-app-django
 django-extensions
 werkzeug
+--upgrade certifi
+sentry-sdk
