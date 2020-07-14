@@ -6,3 +6,4 @@ django-extensions
 werkzeug
 --upgrade certifi
 sentry-sdk
+easy-thumbnails
