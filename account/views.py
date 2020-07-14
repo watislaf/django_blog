@@ -86,21 +86,6 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    if request.method == 'POST':
-        form = ImgUrl(request.POST)
-        if not form.is_valid():
-            messages.error(request, 'invalid url')
-        else:
-            return redirect(f'/images/create/?url={form.cleaned_data["image_url"]}&title=default')
-    try:
-        if request.GET['error'] == 'invalid':
-            messages.error(request, 'invalid url')
-        if request.GET['error'] == 'neto':
-            messages.error(request, 'invalid format')
-    except BaseException:
-        pass
-    form = ImgUrl()
     return render(request,
                   'account/dashboard.html',
-                  {'section': 'dashboard',
-                   'form': form})
+                  {'section': 'dashboard'})

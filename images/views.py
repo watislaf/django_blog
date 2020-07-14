@@ -5,6 +5,8 @@ from .forms import ImageCreateForm
 
 from urllib import request
 
+from account.forms import ImgUrl
+
 @login_required
 def image_create(request2):
     if request2.method == 'POST':
@@ -69,3 +71,49 @@ def image_like(request):
         except:
             pass
     return JsonResponse({'status': 'error'})
+
+from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, \
+    PageNotAnInteger
+
+@login_required
+def image_list(request):
+    if request.method == 'POST' and not request.is_ajax():
+        form = ImgUrl(request.POST)
+        if not form.is_valid():
+            messages.error(request, 'invalid url')
+        else:
+            return redirect(f'/images/create/?url={form.cleaned_data["image_url"]}&title=default')
+    try:
+        if request.GET['error'] == 'invalid':
+            messages.error(request, 'invalid url')
+        if request.GET['error'] == 'neto':
+            messages.error(request, 'invalid format')
+    except BaseException:
+        pass
+    form = ImgUrl()
+
+    images = Image.objects.all()
+    paginator = Paginator(images, 5)
+    page = request.GET.get('page')
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        images = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            # return an empty page
+            return HttpResponse('')
+        # If page is out of range deliver last page of results
+        images = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return render(request,
+                      'images/image/list_ajax.html',
+                      {'section': 'images', 'images': images,
+                       'form': form})
+    return render(request,
+                  'images/image/list.html',
+                  {'section': 'images', 'images': images,
+                   'form': form})
