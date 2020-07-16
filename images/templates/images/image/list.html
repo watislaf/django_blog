@@ -15,6 +15,9 @@
 	<p><input type="submit" value="Add photo via url"></p>
 </form>
 
+<p>You have bookmarked
+	{{ request.user.images_created.count }} image{{ request.user.images_created.count|pluralize }}.</p>
+
 <div id="image-list">
 	{% include "images/image/list_ajax.html" %}
 </div>

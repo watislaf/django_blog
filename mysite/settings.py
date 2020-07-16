@@ -18,6 +18,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.c
 SITE_ID = 3
 
 INSTALLED_APPS = [
+    'actions.apps.ActionsConfig',
     'easy_thumbnails',
     'images.apps.ImagesConfig',
     'social_django',
