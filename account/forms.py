@@ -17,6 +17,10 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget = forms.PasswordInput)
 
 
+class ImgUrl(forms.Form):
+    image_url = forms.URLField()
+
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label = 'Password',
                                widget = forms.PasswordInput)

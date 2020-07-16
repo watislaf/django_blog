@@ -18,6 +18,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.c
 SITE_ID = 3
 
 INSTALLED_APPS = [
+    'easy_thumbnails',
+    'images.apps.ImagesConfig',
     'social_django',
     'django_extensions',
     'account.apps.AccountConfig',
@@ -152,7 +154,7 @@ AUTHENTICATION_BACKENDS = [
     'account.authentication.MyVk',
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.facebook.FacebookOAuth2',
-    ]
+]
 
 # для фейсбука
 SOCIAL_AUTH_FACEBOOK_KEY = '1484853328367791'  # Facebook App ID
@@ -162,3 +164,16 @@ LOGIN_REDIRECT_URL = '/account/'
 SOCIAL_AUTH_VK_OAUTH2_KEY = '7537831'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'ICSkYRtgiaA0cXNaLMXD'
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+
+# слежка
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn = "https://b269219bf0ac4b4ebff9e0b44bacf1e4@o419885.ingest.sentry.io/5337037",
+    integrations = [DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii = True
+)

@@ -271,9 +271,9 @@ a.like, a.follow {
 
 #image-list .image {
     float: left;
-    width: 220px;
-    height: 300px;
-    margin: 0 10px 10px 10px;
+    width: 250px;
+    height: 270px;
+    margin: 0 30px 30px 30px;
     border-top: 8px solid #00abff;
     background: #eee;
 }
