@@ -5,6 +5,9 @@ from django.urls import reverse_lazy
 
 app_name = 'account'
 urlpatterns = [
+    path('users/follow/', views.user_follow, name = 'user_follow'),
+    path('users/', views.user_list, name = 'user_list'),
+    path('users/<username>/', views.user_detail, name = 'user_detail'),
     # post views
     # path('login/', views.user_login, name = 'login'),  # possible login view
     path('login/', auth_views.LoginView.as_view(), name = 'login2'),

@@ -28,4 +28,5 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ('status', 'publish')
     # сортировка
     pass
+
 # Register your models here.
