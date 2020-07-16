@@ -165,7 +165,7 @@ SOCIAL_AUTH_VK_OAUTH2_KEY = '7537831'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'ICSkYRtgiaA0cXNaLMXD'
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
-# слежка
+# слежка за ошибками
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -177,3 +177,12 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii = True
 )
+
+# Django adds a get_absolute_url() method dynamically to any models that appear
+# in the ABSOLUTE_URL_OVERRIDES setting
+from django.urls import reverse_lazy
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('account:user_detail',
+                                        args = [u.username])
+}
