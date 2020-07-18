@@ -18,6 +18,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.c
 SITE_ID = 3
 
 INSTALLED_APPS = [
+    'cart.apps.CartConfig',
     'shop.apps.ShopConfig',
     'actions.apps.ActionsConfig',
     'easy_thumbnails',
@@ -188,3 +189,6 @@ ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('account:user_detail',
                                         args = [u.username])
 }
+
+# для телеги
+CART_SESSION_ID = 'cart'
