@@ -7,3 +7,5 @@ werkzeug
 --upgrade certifi
 sentry-sdk
 easy-thumbnails
+celery
+django-registration

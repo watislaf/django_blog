@@ -15,9 +15,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.com"]
 
-SITE_ID = 3
+SITE_ID = 4
 
 INSTALLED_APPS = [
+    'orders.apps.OrdersConfig',
+    'cart.apps.CartConfig',
+    'shop.apps.ShopConfig',
     'actions.apps.ActionsConfig',
     'easy_thumbnails',
     'images.apps.ImagesConfig',
@@ -59,7 +62,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',  # Добавил эту строку
+                'social_django.context_processors.backends',  # Добавил эту строку для vk
+                'cart.context_processors.cart',  # И эту для cart
             ],
         },
     },
@@ -187,3 +191,11 @@ ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('account:user_detail',
                                         args = [u.username])
 }
+
+# для телеги
+CART_SESSION_ID = 'cart'
+
+#
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+ACCOUNT_ACTIVATION_DAYS = 2
