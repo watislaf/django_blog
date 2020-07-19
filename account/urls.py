@@ -1,9 +1,12 @@
 from django.urls import path
+from django.urls import include
 from . import views
 from django.contrib.auth import views as auth_views
+from django_registration import views as register
 from django.urls import reverse_lazy
 
 app_name = 'account'
+
 urlpatterns = [
     path('users/follow/', views.user_follow, name = 'user_follow'),
     path('users/', views.user_list, name = 'user_list'),
@@ -14,9 +17,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name = 'logout'),
     path('', views.dashboard, name = 'dashboard'),
     path('edit/', views.edit, name = 'edit'),
-
-    # register url
-    path('register/', views.register, name = 'register'),
 
     # change password urls
     path('password_change/',
@@ -42,4 +42,14 @@ urlpatterns = [
     path('reset/done/',
          auth_views.PasswordResetCompleteView.as_view(),
          name = 'password_reset_complete'),
+
+#    path('register/',
+#         register.PasswordResetCompleteView.as_view(),
+#        name = 'password_reset_complete'),
+
+#    path('', include('django_registration.backends.activation.urls')),
+
+    # register url
+   # path('register/', views.register, name = 'register'),
+
 ]

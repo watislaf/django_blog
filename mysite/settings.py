@@ -15,7 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.com"]
 
-SITE_ID = 3
+SITE_ID = 4
 
 INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
@@ -194,3 +194,8 @@ ABSOLUTE_URL_OVERRIDES = {
 
 # для телеги
 CART_SESSION_ID = 'cart'
+
+#
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+ACCOUNT_ACTIVATION_DAYS = 2
