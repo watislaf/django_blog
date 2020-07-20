@@ -9,3 +9,4 @@ sentry-sdk
 easy-thumbnails
 celery
 django-registration
+braintree

@@ -18,6 +18,7 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace = 'orders')),
     path('cart/', include('cart.urls', namespace = 'cart')),
     path('admin/', admin.site.urls),
+    path('payment/', include('payment.urls', namespace = 'payment')),
     path('blog/', include('blog.urls', namespace = 'blog')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name = 'django.contrib.sitemaps.views.sitemap'),
@@ -30,6 +31,7 @@ urlpatterns = [
         RegistrationView.as_view(form_class = RegistrationFormUniqueEmail),
         name = 'registration_register'),
     url(r'^account/', include('django_registration.backends.activation.urls')),
+
 ]
 
 if settings.DEBUG:

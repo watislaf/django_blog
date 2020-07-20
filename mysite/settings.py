@@ -18,6 +18,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.c
 SITE_ID = 4
 
 INSTALLED_APPS = [
+    'payment.apps.PaymentConfig',
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
     'shop.apps.ShopConfig',
@@ -199,3 +200,16 @@ CART_SESSION_ID = 'cart'
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 ACCOUNT_ACTIVATION_DAYS = 2
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'csfs92tsw3m9s2fb'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'nz3vty6xgzxyjkhz'  # Public Key
+BRAINTREE_PRIVATE_KEY = 'e14ad05b0e8278c80c4d8525224c39d0'  # Private key
+import braintree
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
