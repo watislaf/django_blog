@@ -13,8 +13,9 @@ from django.conf.urls import url
 sitemaps = {
     'posts': PostSitemap,
 }
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('rosetta/', include('rosetta.urls')),
     path('orders/', include('orders.urls', namespace = 'orders')),
     path('cart/', include('cart.urls', namespace = 'cart')),
@@ -32,7 +33,7 @@ urlpatterns = [
         RegistrationView.as_view(form_class = RegistrationFormUniqueEmail),
         name = 'registration_register'),
     url(r'^account/', include('django_registration.backends.activation.urls')),
-]
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
