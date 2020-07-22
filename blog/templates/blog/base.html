@@ -1,5 +1,6 @@
 {% load static %}
 {% load blog_tags %}
+{% load i18n %}
 <html lang="en">
 <head>
 	<title>{% block title %}{% endblock %}</title>
@@ -25,11 +26,12 @@
 	
 	<div class="go_to_dash">
 		{% if request.user.is_authenticated %}
-		Hello {{ request.user.first_name }},
-		<a href="{% url 'account:logout' %}">Logout</a> or go to
-		<a href="{% url 'account:dashboard' %}">DashBoard</a>
+		{% blocktrans %}Hello {% endblocktrans %}{{ name }}!
+		{{ request.user.first_name }},
+		<a href="{% url 'account:logout' %}">{% trans "Logout" %}</a>{% trans " or go to" %}
+		<a href="{% url 'account:dashboard' %}">{% trans "DashBoard" %}</a>
 		{% else %}
-		<a href="{% url 'account:login2' %}">Log-in</a>
+		<a href="{% url 'account:login2' %}">{% trans "Log-in" %}</a>
 		{% endif %}
 	</div>
 </div>

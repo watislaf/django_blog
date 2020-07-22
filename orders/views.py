@@ -31,7 +31,7 @@ def order_create(request):
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-#import weasyprint GTK ERROR
+#import weasyprint
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import get_object_or_404
 from .models import Order

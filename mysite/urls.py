@@ -15,6 +15,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+    path('rosetta/', include('rosetta.urls')),
     path('orders/', include('orders.urls', namespace = 'orders')),
     path('cart/', include('cart.urls', namespace = 'cart')),
     path('admin/', admin.site.urls),
@@ -31,7 +32,6 @@ urlpatterns = [
         RegistrationView.as_view(form_class = RegistrationFormUniqueEmail),
         name = 'registration_register'),
     url(r'^account/', include('django_registration.backends.activation.urls')),
-
 ]
 
 if settings.DEBUG:
