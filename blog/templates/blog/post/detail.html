@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load blog_tags %}
+{% load i18n %}
 
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
@@ -16,7 +17,12 @@
 
 {% with comments.count as total_comments %}
 <h2>
-	{{ total_comments }} comment{{ total_comments|pluralize }}
+	{% blocktrans count items=total_comments %}
+	{{ items }} comment
+	{% plural %}
+	{{ items }} comments
+	{% endblocktrans %}
+	
 </h2>
 {% endwith %}
 

@@ -7,12 +7,13 @@ from django.urls import reverse
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status = 'published')
+from django.utils.translation import gettext_lazy as  _
 
 class Post(models.Model):
     objects = models.Manager()  # The default manager.
     published = PublishedManager()
 
-    title = models.CharField(max_length = 250)
+    title = models.CharField(_('title'),max_length = 250)
     # This is the field for the post title. This field is CharField, which
     # translates into a VARCHAR column in the SQL database
 
@@ -39,7 +40,8 @@ class Post(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published')
     )
-    status = models.CharField(max_length = 10,
+    status = models.CharField(_('status'),
+                              max_length = 10,
                               choices = STATUS_CHOICES,
                               default = 'draft')
 
