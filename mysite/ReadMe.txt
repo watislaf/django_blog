@@ -32,3 +32,5 @@ you have to enter the actual translation for the given string
 pip install django-rosetta==0.9.3
 Который позволяет редачить .po файлы. 328 стр. Так же доступна утилита parler для перевода обьектов в django.
 Установка языка будет по url /en/
+
+344 23.07 локолизация проекта
