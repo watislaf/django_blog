@@ -11,4 +11,4 @@ celery
 django-registration
 braintree
 django-rosetta
-environ
+django-environ
