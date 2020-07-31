@@ -4,7 +4,7 @@ Markdown
 social-auth-app-django
 django-extensions
 werkzeug
---upgrade certifi
+certifi
 sentry-sdk
 easy-thumbnails
 celery
@@ -12,3 +12,4 @@ django-registration
 braintree
 django-rosetta
 channels
+django-environ
