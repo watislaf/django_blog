@@ -33,6 +33,7 @@ urlpatterns = i18n_patterns(
         RegistrationView.as_view(form_class = RegistrationFormUniqueEmail),
         name = 'registration_register'),
     url(r'^account/', include('django_registration.backends.activation.urls')),
+    path('chat/', include('chat.urls', namespace='chat')),
 )
 
 if settings.DEBUG:
