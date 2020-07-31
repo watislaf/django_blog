@@ -12,3 +12,5 @@ django-registration
 braintree
 django-rosetta
 django-environ
+gunicorn
+psycopg2-binary
