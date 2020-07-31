@@ -11,5 +11,6 @@ celery
 django-registration
 braintree
 django-rosetta
-channels
-django-environ
+gunicorn
+psycopg2-binary
+channels-regis
