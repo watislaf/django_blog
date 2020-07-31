@@ -4,11 +4,14 @@ Markdown
 social-auth-app-django
 django-extensions
 werkzeug
---upgrade certifi
+certifi
 sentry-sdk
 easy-thumbnails
 celery
 django-registration
 braintree
 django-rosetta
+django-environ
+gunicorn
+psycopg2-binary
 channels
