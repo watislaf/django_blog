@@ -45,4 +45,5 @@ python manage.py dumpdata shop --indent=2 - выводит все обьекты
 Тут мы используем своё апи
 
 Docker
+Поставим докер на сервер https://docs.docker.com/engine/install/ubuntu/
 Подготовим image нашего проекта для запуска на сервере 
