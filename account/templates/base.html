@@ -25,6 +25,9 @@
 		<li {% if section == "people" %}class="selected" {% endif %}>
 		<a href="{% url 'account:user_list' %}">People</a>
 		</li>
+		<li {% if section == "chat" %}class="selected" {% endif %}>
+		<a href="{% url 'chat:room' %}">Chat</a>
+		</li>
 	
 	</ul>
 	{% endif %}
