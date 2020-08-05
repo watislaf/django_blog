@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 14:30+0300\n"
+"POT-Creation-Date: 2020-08-05 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,51 +17,52 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural= n == 0 ? 0 : n == 1 ? 1 : 2;\n"
-#: .\blog\forms.py:14
+
+#: blog/forms.py:14
 msgid "name"
 msgstr "имя"
 
-#: .\blog\forms.py:15
+#: blog/forms.py:15
 msgid "email"
 msgstr "почта"
 
-#: .\blog\forms.py:16
+#: blog/forms.py:16
 msgid "to"
 msgstr "кому"
 
-#: .\blog\forms.py:17
+#: blog/forms.py:17
 msgid "comment"
 msgstr "комментарий"
 
-#: .\blog\models.py:16
+#: blog/models.py:16
 msgid "title"
 msgstr "Заголовок"
 
-#: .\blog\models.py:43
+#: blog/models.py:43
 msgid "status"
 msgstr "Статус"
 
-#: .\blog\templates\blog\base.html:29
+#: blog/templates/blog/base.html:30
 msgid "Hello "
 msgstr "Привет "
 
-#: .\blog\templates\blog\base.html:31
+#: blog/templates/blog/base.html:32
 msgid "Logout"
 msgstr "Разлогиньтесь"
 
-#: .\blog\templates\blog\base.html:31
+#: blog/templates/blog/base.html:32
 msgid " or go to"
 msgstr " или перейдите в"
 
-#: .\blog\templates\blog\base.html:32
+#: blog/templates/blog/base.html:33
 msgid "DashBoard"
 msgstr "Главная страница"
 
-#: .\blog\templates\blog\base.html:34
+#: blog/templates/blog/base.html:35
 msgid "Log-in"
 msgstr "Залогиньтесь"
 
-#: .\blog\templates\blog\post\detail.html:20
+#: blog/templates/blog/post/detail.html:20
 #, python-format
 msgid ""
 "\n"
