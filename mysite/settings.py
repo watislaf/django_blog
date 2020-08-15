@@ -18,6 +18,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '84.201.135.182', 'gigglingpenguin.me', "vladkoz.c
 SITE_ID = 4
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'payment.apps.PaymentConfig',
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
@@ -226,3 +228,19 @@ BRAINTREE_CONF = braintree.Configuration(
 )
 
 USE_L10N = True
+
+#channels
+ASGI_APPLICATION = 'mysite.routing.application'
+CHANNEL_LAYERS = {
+	'default': {
+	'BACKEND': 'channels_redis.core.RedisChannelLayer',
+		'CONFIG': {
+			'hosts': [('127.0.0.1', 6379)],
+		},
+	},
+}
+
+#redis
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 14:30+0300\n"
+"POT-Creation-Date: 2020-08-05 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\account\templates\registration\login.html:23
+#: account/templates/registration/login.html:23
 msgid "Login via VKontakte"
 msgstr ""
 
-#: .\mysite\ReadMe.txt:29
+#: cart/form.py:11
+msgid "Quantity"
+msgstr ""
+
+#: mysite/ReadMe.txt:29
 #, python-format
 msgid "Hello %(name)s!"
 msgstr ""
 
-#: .\mysite\settings.py:104
+#: mysite/settings.py:106
 msgid "English"
 msgstr ""
 
-#: .\mysite\settings.py:105
+#: mysite/settings.py:107
 msgid "Russian"
+msgstr ""
+
+#: shop/templates/shop/base.html:16
+msgid "Language"
+msgstr ""
+
+#: shop/templates/shop/base.html:33
+msgid " Your cart "
+msgstr ""
+
+#: shop/templates/shop/base.html:39
+msgid " Your cart is empty. "
+msgstr ""
+
+#: shop/templates/shop/product/list.html:6
+msgid "Products"
+msgstr ""
+
+#: shop/templates/shop/product/list.html:10
+msgid " Categories"
 msgstr ""
