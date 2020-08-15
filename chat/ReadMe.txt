@@ -1,3 +1,6 @@
+sudo apt-get install redis-server
+
+
 Тут мы напишем свой чат на вебсокетах 476 29.07
 установим
 pip install channels
