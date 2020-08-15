@@ -13,4 +13,4 @@ braintree
 django-rosetta
 gunicorn
 psycopg2-binary
-channels-regis
+channels-redis
