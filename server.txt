@@ -1,3 +1,4 @@
+sudo ssh -i mysite/yandex klockvud@84.201.135.182
 
 Подключение на сервер:
 Разворачиваем venv
