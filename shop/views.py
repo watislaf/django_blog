@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from cart.form import CartAddProductForm
 
 from django.shortcuts import render, get_object_or_404
